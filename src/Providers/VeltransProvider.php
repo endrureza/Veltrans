@@ -16,13 +16,17 @@ use Illuminate\Support\ServiceProvider;
 
 class VeltransProvider extends ServiceProvider
 {
-    public function register()
+    public function boot() 
     {
 
     }
 
-    public function boot() 
+    public function register()
     {
+        $this->app->singleton(Veltrans::class, function () {
+            return new Veltrans();
+        });
 
+        $this->app->alias(Veltrans::class, 'veltrans');
     }
 }

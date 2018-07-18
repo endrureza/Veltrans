@@ -1,0 +1,22 @@
+{
+  "name": "veltrans",
+  "version": "1.0.0",
+  "description": "Dependency for veltrans view",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://endrureza:githubulahkitu13@github.com/endrureza/Veltrans.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/endrureza/Veltrans/issues"
+  },
+  "homepage": "https://github.com/endrureza/Veltrans#readme"
+}
