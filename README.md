@@ -4,14 +4,10 @@ Packge for Integrating Laravel with Midtrans
 
 ## Requirements, recommended environment
 
----
-
 * Latest stable and LTS Laravel versions.
 * PHP 7+
 
 ## Installation
-
----
 
 ```bash
 composer require endru/veltrans
@@ -72,8 +68,6 @@ VELTRANS_IS_3DS=true
 
 ## License and Contributing
 
----
-
 This package is offered under the MIT license. In case you're interested at contributing, make sure to read the contributing guidelines.
 
 ### Testing
@@ -85,8 +79,6 @@ vendor/bin/phpunit
 ```
 
 ## Contact
-
----
 
 Get in touch personally using:
 
