@@ -10,15 +10,13 @@
  * @see https://github.com/endrureza/veltrans
  */
 
-namespace Endru\Veltrans\Facades;
+namespace Endru\Veltrans\Controllers;
 
-use Endru\Veltrans\Veltrans;
-use Illuminate\Support\Facades\Facade;
 
-class VeltransFacade extends Facade
+class CoreAPIController
 {
-    protected static function getFacadeAccessor()
+    public function index()
     {
-        return 'veltrans';
+        echo "core api controller";
     }
 }

@@ -22,13 +22,15 @@
         "phpseclib/phpseclib": "~2.0",
         "doctrine/dbal": "~2.5",
         "laravel/framework": "5.6.*",
-        "veritrans/veritrans-php": "dev-master"
+        "veritrans/veritrans-php": "dev-master",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",
         "symfony/dom-crawler": "~3.1",
         "laravel/laravel": "5.6.*",
-        "mockery/mockery": "^0.9.9"
+        "mockery/mockery": "^0.9.9",
+        "orchestra/testbench": "~3.0"
     },
     "autoload": {
         "psr-4": {
@@ -36,15 +38,12 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {
-            "Endru\\Veltrans\\Tests": "tests/unit-tests/",
-            "Endru\\Veltrans\\Tests\\Extend": "tests/extend/",
-            "Endru\\Veltrans\\Tests\\Traits\\": "tests/traits/"
-        },
         "classmap": [
-            "tests/Test.php",
-            "tests/seeds/SampleSeeder.php"
-        ]
+            "tests/TestCase.php"
+        ],
+        "psr-4": {
+            "Endru\\Veltrans\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "laravel": {
