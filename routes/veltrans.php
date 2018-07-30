@@ -14,9 +14,9 @@ Route::group(['prefix' => 'veltrans', 'namespace' => 'Endru\Veltrans\Controllers
 
     // Snap Route
     Route::group(['prefix' => 'snap'], function () {
-        Route::get('/', [
-            'as' => 'veltrans.snap',
-            'uses' => 'SnapController@index',
+        Route::post('/get_snap_token', [
+            'as' => 'veltrans.snap.get_snap_token',
+            'uses' => 'SnapController@getSnapToken',
         ]);
     });
 

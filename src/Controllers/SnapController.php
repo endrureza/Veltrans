@@ -12,140 +12,106 @@
 
 namespace Endru\Veltrans\Controllers;
 
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 
 class SnapController
 {
-
-    public $server_key;
-
-    public $is_production;
-
-    public $client_key;
-
-    public $is_3ds;
-
-    public $is_sanitized;
-
-    public $client;
-
-    const sandbox_base_url = 'https://api.sandbox.midtrans.com/v2';
-    const prodution_base_url = 'https://api.midtrans.com/v2';
-    const snap_sandbox_base_url = 'https://app.sandbox.midtrans.com/snap/v1';
-    const snap_production_base_url = 'https://app.midtrans.com/snap/v1';
-
     public function __construct()
     {
-        $this->server_key = config('veltrans.server_key');
-        $this->is_production = config('veltrans.is_production');
-        $this->client_key = config('veltrans.client_key');
-        $this->is_3ds = config('veltrans.is_3ds');
-        $this->is_sanitized = config('veltrans.is_sanitized');
         $this->client = new Client();
     }
 
     public function getSnapToken(Request $request)
     {
-        $token = $this->processTransaction($request)->token;
-        return $token;
+        return $this->createTransaction($request)->token;
     }
 
-    public function processTransaction(Request $request)
+    public function createTransaction(Request $request)
     {
-        // if ($this->is_sanitized) {
-        //     $request = $this->sanitized($reqeust);
-        // }
+        $params = $this->processRequest($request);
 
-        // Required
+        return $this->fetchResult($params);
+
+    }
+
+    public function processRequest(Request $request)
+    {
+        // Transaction Details (Required)
         $transaction_details = [
-            'order_id' => rand(),
-            'gross_amount' => 94000
+            'order_id' => $request->order_id,
+            'gross_amount' => $request->gross_amount,
         ];
 
-        // // Optional
-        // $item1_details = [
-        //     'id' => 'a1',
-        //     'price' => 18000,
-        //     'quantity' => 3,
-        //     'name' => 'Apple'
-        // ];
+        // Item Details
+        $item_details = [];
 
-        // // Optional
-        // $item2_details = [
-        //     'id' => 'a2',
-        //     'price' => 20000,
-        //     'quantity' => 2,
-        //     'name' => 'Orange'
-        // ];
+        if ($request->item_details) {
+            foreach ($request->item_details as $item) {
+                $item_details[] = [
+                    'id' => $item['id'],
+                    'price' => $item['price'],
+                    'quantity' => $item['quantity'],
+                    'name' => $item['name'],
+                ];
+            }
+        }
 
-        // // Optional
-        // $item_details = [
-        //     $item1_details,
-        //     $item2_details
-        // ];
+        // Customer Details
+        $customer_details = [];
 
-        // // Optional
-        // $billing_address = [
-        //     'first_name' => "Endru",
-        //     'last_name' => "Tama",
-        //     'address' => "Serdang Raya 70",
-        //     'city' => "Depok",
-        //     'postal_code' => "16421",
-        //     'phone' => "081281869602",
-        //     'country_code' => "IDN"
-        // ];
+        if ($request->customer_details) {
+            foreach ($request->customer_details as $customer) {
+                $customer_details[] = [
+                    'first_name' => 'Endru',
+                    'last_name' => 'Tama',
+                    'email' => 'endrureza@gmail.com',
+                    'phone' => '081212121',
+                ];
+            }
+        }
 
-        // // Optional
-        // $shipping_address = [
-        //     'first_name' => "Reza",
-        //     'last_name' => 'Tama',
-        //     'address' => 'KG 20',
-        //     'city' => 'Jakarta',
-        //     'postal_code' => '16660',
-        //     'phone' => '089618712112',
-        //     'country_code ' => 'IDN'
-        // ];
+        $params = [
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        ];
 
-        // // Optional
-        // $customer_details = [
-        //     'first_name' => 'Foo',
-        //     'last_name' => 'Bar',
-        //     'email' => 'foo@bar.com',
-        //     'phone' => '0898989889',
-        //     'billing_address' => $billing_address,
-        //     'shipping_address' => $shipping_address
-        // ];
-        return $this->fetchResult($request);
+        $params = [
+            'transaction_details' => $transaction_details
+        ];
 
+        return $params;
     }
 
-    public function sanitized($request)
-    {
-
-    }
-
-    public function fetchResult($request)
+    public function fetchResult($params)
     {
         $result = $this->client->request(
             'POST',
-            $this->getSnapBaseURL().'/transactions',
+            $this->getSnapBaseURL() . '/transactions',
             [
+                'verify' => __DIR__ . '/../../resources/data/cacert.pem',
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                    'Authorization' => 'Basic '. base64_encode($this->server_key, ':')
+                    'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
                 ],
-                'form_params' => $request
+                'json' => $params
             ]
         );
 
-        dd($result->getBody());
+        $status_code = $result->getStatusCode();
+        $response = $result->getBody()->getContents();
+        $response = json_decode($response);
+
+        return $response;
     }
 
     public function getSnapBaseUrl()
     {
-        return $this->is_production ? $this->snap_production_base_url : $this->snap_sandbox_base_url;
+        return config('veltrans.is_production') ? config('veltrans.snap_production_base_url') : config('veltrans.snap_sandbox_base_url');
     }
 
 }

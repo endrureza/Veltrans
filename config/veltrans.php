@@ -4,8 +4,23 @@ return [
 
     /*
      |
+     | ----------------------------------------------------------
+     | Veltrans Url Setting
+     | ----------------------------------------------------------
+     |
+     */
+    'sandbox_base_url' => 'https://api.sandbox.midtrans.com/v2',
+
+    'production_base_url' => 'https://api.midtrans.com/v2',
+
+    'snap_sandbox_base_url' => 'https://app.sandbox.midtrans.com/snap/v1',
+
+    'snap_production_base_url' => 'https://app.midtrans.com/snap/v1',
+
+    /*
+     |
      |-----------------------------------------------------------
-     | Veltrans Settings
+     | Veltrans Setting
      |-----------------------------------------------------------
      |
      */
