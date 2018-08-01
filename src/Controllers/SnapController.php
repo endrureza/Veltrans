@@ -62,25 +62,34 @@ class SnapController
         // Customer Details
         $customer_details = [];
 
+        $billing_address = [];
+
+        if ($request->billing_address) {
+
+        }
+
+        $shipping_address = [];
+
+        if ($request->shipping_address) {
+
+        }
+
         if ($request->customer_details) {
-            foreach ($request->customer_details as $customer) {
-                $customer_details[] = [
-                    'first_name' => 'Endru',
-                    'last_name' => 'Tama',
-                    'email' => 'endrureza@gmail.com',
-                    'phone' => '081212121',
-                ];
-            }
+            $customer_details[] = [
+                'first_name' => $request->customer_details['firstname'],
+                'last_name' => $request->customer_details['lastname'],
+                'email' => $request->customer_details['email'],
+                'phone' => $request->customer_details['phone'],
+                'billing_address' => $billing_address,
+                'shipping_address' => $shipping_address
+            ];
         }
 
         $params = [
             'transaction_details' => $transaction_details,
             'customer_details' => $customer_details,
             'item_details' => $item_details,
-        ];
-
-        $params = [
-            'transaction_details' => $transaction_details
+            'enabled_payments' => config('veltrans.enabled_payments')
         ];
 
         return $params;

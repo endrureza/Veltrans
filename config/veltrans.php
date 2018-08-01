@@ -35,7 +35,7 @@ return [
 
     'is_sanitized' => env('VELTRANS_IS_SANITIZED', true),
 
-    'is_3ds' => env('VELTRANS_IS_3DS', true)
+    'is_3ds' => env('VELTRANS_IS_3DS', true),
 
     /*
      |
@@ -46,6 +46,26 @@ return [
      |
      */
 
+    'enabled_payments' => [
+        "credit_card",
+        "mandiri_clickpay",
+        "cimb_clicks",
+        "bca_klikbca",
+        "bca_klikpay",
+        "bri_epay",
+        "echannel",
+        "indosat_dompetku",
+        "mandiri_ecash",
+        "permata_va",
+        "bca_va",
+        "bni_va",
+        "other_va",
+        "gopay",
+        "kioson",
+        "indomaret",
+        "gci",
+        "danamon_online"
+    ],
 
      /*
      |
