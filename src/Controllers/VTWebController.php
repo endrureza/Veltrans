@@ -12,11 +12,114 @@
 
 namespace Endru\Veltrans\Controllers;
 
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 
 class VTWebController
 {
-    public function index()
+    public function __construct()
     {
-        echo "vtweb controller";
+        $this->client = new Client();
     }
+
+    public function getRedirectUrl(Request $request)
+    {
+        return $this->createTransaction($request)->redirect_url;
+    }
+
+    public function createTransaction(Request $request)
+    {
+        $params = $this->processRequest($request);
+
+        return $this->fetchResult($params);
+    }
+
+    public function processRequest(Request $request)
+    {
+        // Transaction Details (Required)
+        $transaction_details = [
+            'order_id' => $request->order_id,
+            'gross_amount' => $request->gross_amount,
+        ];
+
+        // Item Details
+        $item_details = [];
+
+        if ($request->item_details) {
+            foreach ($request->item_details as $item) {
+                $item_details[] = [
+                    'id' => $item['id'],
+                    'price' => $item['price'],
+                    'quantity' => $item['quantity'],
+                    'name' => $item['name'],
+                ];
+            }
+        }
+
+        // Customer Details
+        $customer_details = [];
+
+        $billing_address = [];
+
+        if ($request->billing_address) {
+
+        }
+
+        $shipping_address = [];
+
+        if ($request->shipping_address) {
+
+        }
+
+        if ($request->customer_details) {
+            $customer_details[] = [
+                'first_name' => $request->customer_details['firstname'],
+                'last_name' => $request->customer_details['lastname'],
+                'email' => $request->customer_details['email'],
+                'phone' => $request->customer_details['phone'],
+                'billing_address' => $billing_address,
+                'shipping_address' => $shipping_address
+            ];
+        }
+
+        $params = [
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+            'enabled_payments' => config('veltrans.enabled_payments')
+        ];
+
+        return $params;
+    }
+
+    public function fetchResult($params)
+    {
+        $result = $this->client->request(
+            'POST',
+            $this->getSnapBaseURL() . '/transactions',
+            [
+                'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                ],
+                'json' => $params
+            ]
+        );
+
+        $status_code = $result->getStatusCode();
+        $response = $result->getBody()->getContents();
+        $response = json_decode($response);
+
+        return $response;
+    }
+
+    public function getSnapBaseUrl()
+    {
+        return config('veltrans.is_production') ? config('veltrans.snap_production_base_url') : config('veltrans.snap_sandbox_base_url');
+    }
+
 }
