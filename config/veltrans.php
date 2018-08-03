@@ -3,18 +3,18 @@
 return [
 
     /*
-     |
-     |-----------------------------------------------------------
-     | Veltrans Setting
-     |-----------------------------------------------------------
-     |
+    |
+    |-----------------------------------------------------------
+    | Veltrans Setting
+    |-----------------------------------------------------------
+    |
      */
 
-    'merchant_id' => env('VELTRANS_MERCHANT_ID',null),
+    'merchant_id' => env('VELTRANS_MERCHANT_ID', null),
 
-    'client_key' => env('VELTRANS_CLIENT_KEY',null),
+    'client_key' => env('VELTRANS_CLIENT_KEY', null),
 
-    'server_key' => env('VELTRANS_SERVER_KEY',null),
+    'server_key' => env('VELTRANS_SERVER_KEY', null),
 
     'is_production' => env('VELTRANS_IS_PRODUCTION', false),
 
@@ -22,13 +22,15 @@ return [
 
     'is_3ds' => env('VELTRANS_IS_3DS', true),
 
+    'notification_url' => env('VELTRANS_NOTIFICATION_URL', 'http://localhost/notification/handling'),
+
     /*
-     |
-     |-----------------------------------------------------------
-     | Snap Settings
-     |-----------------------------------------------------------
-     |
-     |
+    |
+    |-----------------------------------------------------------
+    | Snap Settings
+    |-----------------------------------------------------------
+    |
+    |
      */
     'snap_sandbox_base_url' => 'https://app.sandbox.midtrans.com/snap/v1',
 
@@ -52,29 +54,19 @@ return [
         "kioson",
         "indomaret",
         "gci",
-        "danamon_online"
+        "danamon_online",
     ],
 
-     /*
-     |
-     |-----------------------------------------------------------
-     | VT-Web Settings
-     |-----------------------------------------------------------
-     |
-     |
+    /*
+    |
+    |-----------------------------------------------------------
+    | Core API (VT-Direct) Settings
+    |-----------------------------------------------------------
+    |
+    |
      */
 
+    'core_api_sandbox_base_url' => 'https://api.sandbox.midtrans.com/v2',
 
-     /*
-     |
-     |-----------------------------------------------------------
-     | Core API (VT-Direct) Settings
-     |-----------------------------------------------------------
-     |
-     |
-     */
-
-     'core_api_sandbox_base_url' => 'https://api.sandbox.midtrans.com/v2',
-
-     'core_api_production_base_url' => 'https://api.midtrans.com/v2'
+    'core_api_production_base_url' => 'https://api.midtrans.com/v2',
 ];

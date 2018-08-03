@@ -13,9 +13,9 @@
 namespace Endru\Veltrans\Controllers;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SnapController
 {
@@ -24,17 +24,11 @@ class SnapController
         $this->client = new Client();
     }
 
-    public function getSnapToken(Request $request)
-    {
-        return $this->createTransaction($request)->token;
-    }
-
     public function createTransaction(Request $request)
     {
         $params = $this->processRequest($request);
 
         return $this->fetchResult($params);
-
     }
 
     public function processRequest(Request $request)
@@ -65,23 +59,35 @@ class SnapController
         $billing_address = [];
 
         if ($request->billing_address) {
-
+            $billing_address = [
+                'first_name' => $request->billing_address['first_name'],
+                'last_name' => $request->billing_address['last_name'],
+                'email' => $request->billing_address['email'],
+                'phone' => $request->billing_address['phone'],
+                'address' => isset($request->billing_address['address']) ? $request->billing_address['address'] : '',
+            ];
         }
 
         $shipping_address = [];
 
         if ($request->shipping_address) {
-
+            $shipping_address = [
+                'first_name' => $request->shipping_address['first_name'],
+                'last_name' => $request->shipping_address['last_name'],
+                'email' => $request->shipping_address['email'],
+                'phone' => $request->shipping_address['phone'],
+                'address' => isset($request->shipping_address['address']) ? $request->shipping_address['address'] : '',
+            ];
         }
 
         if ($request->customer_details) {
             $customer_details[] = [
-                'first_name' => $request->customer_details['firstname'],
-                'last_name' => $request->customer_details['lastname'],
+                'first_name' => $request->customer_details['first_name'],
+                'last_name' => $request->customer_details['last_name'],
                 'email' => $request->customer_details['email'],
                 'phone' => $request->customer_details['phone'],
                 'billing_address' => $billing_address,
-                'shipping_address' => $shipping_address
+                'shipping_address' => $shipping_address,
             ];
         }
 
@@ -89,33 +95,49 @@ class SnapController
             'transaction_details' => $transaction_details,
             'customer_details' => $customer_details,
             'item_details' => $item_details,
-            'enabled_payments' => config('veltrans.enabled_payments')
+            'enabled_payments' => config('veltrans.enabled_payments'),
         ];
-
+        
         return $params;
     }
 
     public function fetchResult($params)
     {
-        $result = $this->client->request(
-            'POST',
-            $this->getSnapBaseURL() . '/transactions',
-            [
-                'verify' => __DIR__ . '/../../resources/data/cacert.pem',
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
-                ],
-                'json' => $params
-            ]
-        );
+        try {
+            $result = $this->client->request(
+                'POST',
+                $this->getSnapBaseURL() . '/transactions',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                    'json' => $params,
+                ]
+            );
 
-        $status_code = $result->getStatusCode();
-        $response = $result->getBody()->getContents();
-        $response = json_decode($response);
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
 
-        return $response;
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message
+                ]
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     public function getSnapBaseUrl()

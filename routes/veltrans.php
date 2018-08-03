@@ -14,17 +14,9 @@ Route::group(['prefix' => 'veltrans', 'namespace' => 'Endru\Veltrans\Controllers
 
     // Snap Route
     Route::group(['prefix' => 'snap'], function () {
-        Route::post('/get_snap_token', [
-            'as' => 'veltrans.snap.get_snap_token',
-            'uses' => 'SnapController@getSnapToken',
-        ]);
-    });
-
-    // VTWeb Route
-    Route::group(['prefix' => 'vtweb'], function () {
-        Route::get('/create_transaction', [
-            'as' => 'veltrans.vtweb.create_transaction',
-            'uses' => 'VTWebController@createTransaction',
+        Route::post('/create_transaction', [
+            'as' => 'veltrans.snap.create_transaction',
+            'uses' => 'SnapController@createTransaction',
         ]);
     });
 

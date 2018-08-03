@@ -12,10 +12,16 @@
 
 namespace Endru\Veltrans\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class NotificationController
 {
+    public function __construct()
+    {
+        $this->client = new Client();
+    }
+
     /**
      * Handle Midtrans Notification
      *
@@ -36,11 +42,17 @@ class NotificationController
      * "transaction_status": "capture",
      * "fraud_status": "accept",
      * "status_message": "Veritrans payment notification"
-     * 
+     *
      * @return void
      */
     public function handling(Request $request)
     {
-
+        $result = $this->client->request(
+            'POST',
+            config('veltrans.notification_url'),
+            [
+                'json' => $request->all(),
+            ]
+        );
     }
 }
