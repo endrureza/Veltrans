@@ -13,9 +13,9 @@
 namespace Endru\Veltrans\Controllers;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
+use Illuminate\Http\Request;
+use Log;
 
 class CoreAPIController
 {
@@ -56,7 +56,46 @@ class CoreAPIController
      */
     public function capture(Request $request)
     {
+        try {
+            $params = [
+                'transaction_id' => $request->transaction_id,
+                'gross_amount' => $request->gross_amount,
+            ];
 
+            $result = $this->client->request(
+                'POST',
+                $this->getBaseUrl() . '/capture',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                    'json' => $params,
+                ]
+            );
+
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -69,9 +108,42 @@ class CoreAPIController
      * @param integer $order_id
      * @return void
      */
-    public function approve(Request $request, int $order_id)
+    public function approve(Request $request, string $order_id)
     {
+        try {
+            $result = $this->client->request(
+                'POST',
+                $this->getBaseUrl() . '/' . $order_id . '/approve',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                ]
+            );
 
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -84,9 +156,42 @@ class CoreAPIController
      * @param integer $order_id
      * @return void
      */
-    public function deny(Request $request, int $order_id)
+    public function deny(Request $request, string $order_id)
     {
+        try {
+            $result = $this->client->request(
+                'POST',
+                $this->getBaseUrl() . '/' . $order_id . '/deny',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                ]
+            );
 
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -99,9 +204,42 @@ class CoreAPIController
      * @param integer $order_id
      * @return boolean
      */
-    public function cancel(Request $request, int $order_id)
+    public function cancel(Request $request, string $order_id)
     {
+        try {
+            $result = $this->client->request(
+                'POST',
+                $this->getBaseUrl() . '/' . $order_id . '/cancel',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                ]
+            );
 
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -112,9 +250,42 @@ class CoreAPIController
      * @param integer $order_id
      * @return void
      */
-    public function expire(Request $request, int $order_id)
+    public function expire(Request $request, string $order_id)
     {
+        try {
+            $result = $this->client->request(
+                'POST',
+                $this->getBaseUrl() . '/' . $order_id . '/expire',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                ]
+            );
 
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -125,9 +296,42 @@ class CoreAPIController
      * @param integer $order_id
      * @return void
      */
-    public function refund(Request $request, int $order_id)
+    public function refund(Request $request, string $order_id)
     {
+        try {
+            $result = $this->client->request(
+                'POST',
+                $this->getBaseUrl() . '/' . $order_id . '/refund',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                ]
+            );
 
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -137,9 +341,42 @@ class CoreAPIController
      * @param integer $order_id
      * @return void
      */
-    public function status(int $order_id)
+    public function status(string $order_id)
     {
+        try {
+            $result = $this->client->request(
+                'GET',
+                $this->getBaseUrl() . '/' . $order_id . '/status',
+                [
+                    'verify' => __DIR__ . '/../../resources/data/cacert.pem',
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Basic ' . base64_encode(config('veltrans.server_key') . ':'),
+                    ],
+                ]
+            );
 
+            $status_code = $result->getStatusCode();
+            $response = $result->getBody()->getContents();
+            $response = json_decode($response);
+
+            return response()->json($response, $status_code);
+        } catch (ClientException $e) {
+            Log::error($e);
+
+            $status_code = $e->getCode();
+            $message = $e->getMessage();
+
+            $message = [
+                'error' => [
+                    'http_code' => $status_code,
+                    'message' => $message,
+                ],
+            ];
+
+            return response()->json($message, $status_code);
+        }
     }
 
     /**
@@ -149,7 +386,7 @@ class CoreAPIController
      * @param integer $order_id
      * @return void
      */
-    public function statusB2B(int $order_id)
+    public function statusB2B(string $order_id)
     {
 
     }
@@ -173,5 +410,10 @@ class CoreAPIController
     public function pointInquiry(string $token_id)
     {
 
+    }
+
+    protected function getBaseUrl()
+    {
+        return config('veltrans.is_production') ? config('veltrans.core_api_production_base_url') : config('veltrans.core_api_sandbox_base_url');
     }
 }
