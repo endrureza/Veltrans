@@ -1,0 +1,860 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#requirements-recommended-environment" class="toc-h1 toc-link" data-title="Requirements, recommended environment">Requirements, recommended environment</a>
+          </li>
+          <li>
+            <a href="#installation" class="toc-h1 toc-link" data-title="Installation">Installation</a>
+          </li>
+          <li>
+            <a href="#deploy-configuration" class="toc-h1 toc-link" data-title="Deploy configuration">Deploy configuration</a>
+          </li>
+          <li>
+            <a href="#endpoint-and-default-configuration" class="toc-h1 toc-link" data-title="Endpoint and Default Configuration">Endpoint and Default Configuration</a>
+          </li>
+          <li>
+            <a href="#snap" class="toc-h1 toc-link" data-title="Snap">Snap</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-transaction" class="toc-h2 toc-link" data-title="Create Transaction">Create Transaction</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#core-api" class="toc-h1 toc-link" data-title="Core API">Core API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#capture-transaction" class="toc-h2 toc-link" data-title="Capture Transaction">Capture Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#approve-transaction" class="toc-h2 toc-link" data-title="Approve Transaction">Approve Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#deny-transaction" class="toc-h2 toc-link" data-title="Deny Transaction">Deny Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-transaction" class="toc-h2 toc-link" data-title="Cancel Transaction">Cancel Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#expire-transaction" class="toc-h2 toc-link" data-title="Expire Transaction">Expire Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#refund-transaction" class="toc-h2 toc-link" data-title="Refund Transaction">Refund Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#get-status-transaction" class="toc-h2 toc-link" data-title="Get Status Transaction">Get Status Transaction</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#license-and-contributing" class="toc-h1 toc-link" data-title="License and Contributing">License and Contributing</a>
+          </li>
+          <li>
+            <a href="#testing" class="toc-h1 toc-link" data-title="Testing">Testing</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Package for Integrating Laravel with Midtrans. This package encourages user to interact with API.</p>
+
+<p>Veltrans bridges Midtrans API with Laravel so that the usage will be brief using Laravel Framework.</p>
+<h1 id='requirements-recommended-environment'>Requirements, recommended environment</h1>
+<ul>
+<li>Latest stable and LTS Laravel versions.</li>
+<li>PHP 7+</li>
+</ul>
+<h1 id='installation'>Installation</h1>
+<p>The general way to install this package is through composer</p>
+
+<p><code>composer require endru/veltrans</code></p>
+<h1 id='deploy-configuration'>Deploy configuration</h1>
+<p>First publish the configuration files so you can modify it to your needs:</p>
+
+<p><code>php artisan vendor:publish --tag veltrans</code></p>
+
+<p>Put side code to your <code>.env</code> and set the value to your needs:</p>
+<pre class="highlight plaintext"><code>VELTRANS_MERCHANT_ID=yourmerchantid
+VELTRANS_CLIENT_KEY=youclientkey
+VELTRANS_SERVER_KEY=yourserverkey
+VELTRANS_IS_PRODUCTION=false
+VELTRANS_IS_SANITIZED=true
+VELTRANS_IS_3DS=true
+VELTRANS_NOTIFICATION_URL=yourownappsnotificationurl
+</code></pre><h1 id='endpoint-and-default-configuration'>Endpoint and Default Configuration</h1>
+<p>Veltrans default endpoint : <code>http://yourdomain/veltrans/</code></p>
+
+<p>Veltrans default payment list : <code>credit_card</code>,<code>mandiri_clickpay</code>,<code>cimb_clicks</code>,<code>bca_klikbca</code>,<code>bca_klikpay</code>,<code>bri_epay</code>,<code>echannel</code>,<code>indosat_dompetku</code>,<code>mandiri_ecash</code>,<code>permata_va</code>,<code>bca_va</code>,<code>bni_va</code>,<code>bni_va</code>,<code>other_va</code>,<code>gopay</code>,<code>kioson</code>,<code>indomaret</code>,<code>gci</code>,<code>danamon_online</code></p>
+<h1 id='snap'>Snap</h1><h2 id='create-transaction'>Create Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.snap.create_transaction'</span><span class="p">),</span>
+  <span class="s1">'data'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Params</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span>
+  <span class="kd">let</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span>
+  <span class="nx">snap</span><span class="p">.</span><span class="nx">pay</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">onSuccess</span><span class="p">:</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">//</span>
+    <span class="p">},</span>
+    <span class="na">onPending</span><span class="p">:</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">//</span>
+    <span class="p">},</span>
+    <span class="na">onError</span><span class="p">:</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">//</span>
+    <span class="p">},</span>
+    <span class="na">onClose</span><span class="p">:</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">//</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="s2">"Snap Token"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uri"</span><span class="p">:</span><span class="s2">"Redirect URI"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will create transaction and return snap token.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/snap/create_transaction</code></p>
+<h3 id='route-name'>Route Name</h3>
+<p><code>route(&#39;veltrans.snap.create_transaction&#39;)</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of your application</td>
+<td>required</td>
+</tr>
+<tr>
+<td>gross_amount</td>
+<td>Total of Order price without comma</td>
+<td>requried</td>
+</tr>
+<tr>
+<td>item_details</td>
+<td>All of your order items</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td>Billing address of customer</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>shipping_address</td>
+<td>Shipping address of customer</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>customer_details</td>
+<td>Customer information detail</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h1 id='core-api'>Core API</h1><h2 id='capture-transaction'>Capture Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.capture'</span><span class="p">),</span>
+  <span class="s1">'data'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Params</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will capture transaction</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/core/capture</code></p>
+<h3 id='route-name-2'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.capture&#39;)</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transaction_id</td>
+<td>Midtrans transaction_id</td>
+<td>required</td>
+</tr>
+<tr>
+<td>gross_amount</td>
+<td>Total amount without comma</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='approve-transaction'>Approve Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.approve'</span><span class="p">,{</span><span class="na">order_id</span><span class="p">:</span><span class="nx">order_id</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will approve transaction</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/core/{order_id}/approve</code></p>
+<h3 id='route-name-3'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.approve&#39;)</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of Transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='deny-transaction'>Deny Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.deny'</span><span class="p">,{</span><span class="na">order_id</span><span class="p">:</span><span class="nx">order_id</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will deny transaction</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/core/{order_id}/deny</code></p>
+<h3 id='route-name-4'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.deny&#39;)</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of Transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-transaction'>Cancel Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.cancel'</span><span class="p">,{</span><span class="na">order_id</span><span class="p">:</span><span class="nx">order_id</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will cancel transaction</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/core/{order_id}/cancel</code></p>
+<h3 id='route-name-5'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.cancel&#39;)</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of Transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='expire-transaction'>Expire Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.expire'</span><span class="p">,{</span><span class="na">order_id</span><span class="p">:</span><span class="nx">order_id</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will expire transaction</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/core/{order_id}/expire</code></p>
+<h3 id='route-name-6'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.expire&#39;)</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of Transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='refund-transaction'>Refund Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.refund'</span><span class="p">,{</span><span class="na">order_id</span><span class="p">:</span><span class="nx">order_id</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will refund transaction</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST http://yourdomain/veltrans/core/{order_id}/refund</code></p>
+<h3 id='route-name-7'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.refund&#39;)</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of Transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h2 id='get-status-transaction'>Get Status Transaction</h2>
+<blockquote>
+<p>Axios Example</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">axios</span><span class="p">({</span>
+  <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="s1">'url'</span><span class="p">:</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'veltrans.core.status'</span><span class="p">,{</span><span class="na">order_id</span><span class="p">:</span><span class="nx">order_id</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Possible Valid Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Response Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Possible Error Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="s2">"Error Message"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will get transaction status</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET http://yourdomain/veltrans/core/{order_id}/status</code></p>
+<h3 id='route-name-8'>Route Name</h3>
+<p><code>route(&#39;veltrans.core.status&#39;)</code></p>
+<h3 id='query-parameters-8'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required / Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Order Id of Transaction</td>
+<td>required</td>
+</tr>
+</tbody></table>
+<h1 id='license-and-contributing'>License and Contributing</h1>
+<p>This package is offered under the MIT license. In case you&#39;re interested at contributing, make sure to read the contributing guidelines.</p>
+<h1 id='testing'>Testing</h1>
+<p>Run tests using:</p>
+
+<p><code>vendor/bin/phpunit</code></p>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
