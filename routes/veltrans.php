@@ -84,29 +84,6 @@ Route::group(['prefix' => 'veltrans', 'namespace' => 'Endru\Veltrans\Controllers
         ]);
     });
 
-    // Transaction Route
-    Route::group(['prefix' => 'transaction'], function () {
-        Route::get('/{transaction_id}/status', [
-            'as' => 'veltrans.transaction.status',
-            'uses' => 'TransactionController@getStatus'
-        ]);
-
-        Route::post('/{transaction_id}/approve', [
-            'as' => 'veltrans.transaction.approve',
-            'uses' => 'TransactionController@approveTransaction'
-        ]);
-
-        Route::post('/{transaction_id}/cancel', [
-            'as' => 'veltrans.transaction.cancel',
-            'uses' => 'TransactionController@cancelTransaction'
-        ]);
-
-        Route::post('/{transaction_id}/expire', [
-            'as' => 'veltrans.transaction.expire',
-            'uses' => 'TransactionController@expireTransaction'
-        ]);
-    });
-
     // Notification Route
     Route::post('/notification/handling', [
         'as' => 'veltrans.notification.handling',
