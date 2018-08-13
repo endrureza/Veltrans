@@ -12,29 +12,34 @@
 
 namespace Endru\Veltrans\Providers;
 
+use Endru\Veltrans\Exceptions\VeltransException;
+use Endru\Veltrans\Veltrans;
 use Illuminate\Support\ServiceProvider;
 
 class VeltransProvider extends ServiceProvider
 {
     public function boot()
     {
-
         // Config
         $this->publishes([
-            __DIR__.'/../../config/veltrans.php' => config_path('veltrans.php'),
+            __DIR__ . '/../../config/veltrans.php' => config_path('veltrans.php'),
         ]);
 
         $this->loadRoutesFrom(
-            __DIR__.'/../../routes/veltrans.php'
+            __DIR__ . '/../../routes/veltrans.php'
         );
     }
 
     public function register()
     {
+        $this->app->singleton(VeltransException::class, function() {
+            return new VeltransException();
+        });
+
         $this->app->singleton(Veltrans::class, function () {
             return new Veltrans();
         });
 
-        $this->app->alias(Veltrans::class, 'veltrans');
+        // $this->app->alias(Veltrans::class, 'veltrans');
     }
 }

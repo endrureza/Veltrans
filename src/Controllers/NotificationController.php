@@ -51,6 +51,7 @@ class NotificationController
             'POST',
             config('veltrans.notification_url'),
             [
+                'verify' => __DIR__. '/../../resources/data/cacert.pem',
                 'json' => $request->all(),
             ]
         );

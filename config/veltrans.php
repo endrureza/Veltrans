@@ -22,6 +22,8 @@ return [
 
     'is_3ds' => env('VELTRANS_IS_3DS', true),
 
+    'auth_key' => env('VELTRANS_AUTH_KEY', null),
+
     'notification_url' => env('VELTRANS_NOTIFICATION_URL', 'http://localhost/notification/handling'),
 
     /*
