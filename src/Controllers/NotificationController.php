@@ -14,6 +14,7 @@ namespace Endru\Veltrans\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Endru\Veltrans\Exceptions\VeltransException;
 
 class NotificationController
 {
@@ -47,6 +48,10 @@ class NotificationController
      */
     public function handling(Request $request)
     {
+        if (config('veltrans.notification_url') === '') {
+            throw new VeltransException('Notification url cannot be empty');
+        }
+
         $result = $this->client->request(
             'POST',
             config('veltrans.notification_url'),

@@ -15,7 +15,7 @@ Route::group(
         'prefix' => 'veltrans',
         'namespace' => 'Endru\Veltrans\Controllers',
         'middleware' => [
-            Endru\Veltrans\Middleware\VeltransAuthMiddleware::class,
+            Endru\Veltrans\Middleware\VeltransMiddleware::class,
         ],
     ], function () {
 

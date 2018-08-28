@@ -24,21 +24,27 @@ class VeltransProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/veltrans.php' => config_path('veltrans.php'),
         ]);
-
+        
+        // Route
         $this->loadRoutesFrom(
             __DIR__ . '/../../routes/veltrans.php'
+        );
+
+        // View
+        $this->loadViewsFrom(
+            __DIR__ . '/../../resources/views', 'veltrans'
         );
     }
 
     public function register()
     {
-        $this->app->singleton(VeltransException::class, function() {
-            return new VeltransException();
-        });
+        // $this->app->singleton(VeltransException::class, function() {
+        //     return new VeltransException();
+        // });
 
-        $this->app->singleton(Veltrans::class, function () {
-            return new Veltrans();
-        });
+        // $this->app->singleton(Veltrans::class, function () {
+        //     return new Veltrans();
+        // });
 
         // $this->app->alias(Veltrans::class, 'veltrans');
     }
