@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the endru/velitrans package.
+ * This file is part of the endru/veltrans package.
  *
  * (c) Endru Reza <lotusb13@gmail.com>
  *
@@ -56,7 +56,8 @@ class NotificationController
             'POST',
             config('veltrans.notification_url'),
             [
-                'verify' => __DIR__. '/../../resources/data/cacert.pem',
+                // 'verify' => __DIR__. '/../../resources/data/cacert.pem',
+                'verify' => false,
                 'json' => $request->all(),
             ]
         );

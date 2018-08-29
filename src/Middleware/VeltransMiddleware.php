@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the endru/velitrans package.
+ * This file is part of the endru/veltrans package.
  *
  * (c) Endru Reza <lotusb13@gmail.com>
  *
